@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, status, viewsets
 from .models import Poll, Choice
-from .serializers import PollSerializer, ChoiceSerializer, VoteSerializer
+from .serializers import PollSerializer, ChoiceSerializer, VoteSerializer, UserSerializer
 
 
 # class PollList(generics.ListCreateAPIView):
@@ -43,3 +43,7 @@ class CreateVote(APIView):
             return Response(my_serializer.data, status.HTTP_201_CREATED)
         else:
             return Response(my_serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+
+class UserCreate(generics.CreateAPIView):
+    serializer_class = UserSerializer
